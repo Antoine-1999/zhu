@@ -7,13 +7,15 @@
           <img class="user-img" src="../assets/people.png" />
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="$router.push('/Usermsg')">个人中心</el-dropdown-item>
+          <el-dropdown-item @click.native="$router.push('/Usermsg')"
+            >个人中心</el-dropdown-item
+          >
           <el-dropdown-item @click.native="exit">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <div class="header-right-text">
-        <div class="header-wellcome">欢迎你，{{name}}</div>
-        <div class="header-time">{{headerTime}}</div>
+        <div class="header-wellcome">欢迎你，{{ name }}</div>
+        <div class="header-time">{{ headerTime }}</div>
       </div>
     </div>
   </div>
@@ -24,20 +26,12 @@ export default {
   data() {
     return {
       headerTime: "",
-      name:"",
+      name: "",
     };
   },
   methods: {
     showtime() {
-      var week = [
-        "星期日",
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-      ];
+      var week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
       var date = new Date();
       var year = date.getFullYear();
       var month = date.getMonth() + 1;
@@ -55,32 +49,31 @@ export default {
         " " +
         hour +
         ":" +
-        (minutes <10 ? "0"+minutes  : minutes)+
+        (minutes < 10 ? "0" + minutes : minutes) +
         ":" +
         (second < 10 ? "0" + second : second) +
         "" +
         (week[date.getDay()] || "");
     },
-    getusername(){
-      let loginname=sessionStorage.getItem('loginuser');//取值
-      this.name=JSON.parse(loginname).username;//转换赋值
+    getusername() {
+      let loginname = sessionStorage.getItem("loginuser"); //取值
+      this.name = JSON.parse(loginname).username; //转换赋值
     },
-    exit(){
+    exit() {
       console.log("退出");
-      sessionStorage.removeItem('loginuser');
-      this.$router.push('/login');
-    }
+      sessionStorage.removeItem("loginuser");
+      this.$router.push("/login");
+    },
   },
   mounted() {
     this.showtime();
     setInterval(() => {
-      this.showtime()
+      this.showtime();
     }, 1000);
   },
-  created(){
+  created() {
     this.getusername();
-  }
-    
+  },
 };
 </script>
 

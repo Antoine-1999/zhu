@@ -12,10 +12,7 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input
-          v-model="formInline.message"
-          placeholder="请输入查询内容"
-        ></el-input>
+        <el-input v-model="formInline.message" placeholder="请输入查询内容"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="Query">查询</el-button>
@@ -25,15 +22,11 @@
     </el-form>
 
     <el-table fit :data="staffList" style="width: 80%; margin-left: 20px">
-      <el-table-column disable prop="name" label="姓名" width="200">
-      </el-table-column>
-      <el-table-column prop="phone" label="电话" width="200">
-      </el-table-column>
-      <el-table-column prop="money" label="工资" width="100">
-      </el-table-column>
+      <el-table-column disable prop="name" label="姓名" width="200"> </el-table-column>
+      <el-table-column prop="phone" label="电话" width="200"> </el-table-column>
+      <el-table-column prop="money" label="工资" width="100"> </el-table-column>
       <el-table-column prop="address" label="地址" width="200"> </el-table-column>
-      <el-table-column prop="email" label="电子邮箱" width="200">
-      </el-table-column>
+      <el-table-column prop="email" label="电子邮箱" width="200"> </el-table-column>
       <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button
@@ -57,10 +50,7 @@
     >
       <el-form ref="editsForm" :model="editsForm" label-width="80px">
         <el-form-item label="姓名">
-          <el-input
-            v-model="editsForm.name"
-            max-length="12"
-          ></el-input>
+          <el-input v-model="editsForm.name" max-length="12"></el-input>
         </el-form-item>
         <el-form-item label="电话">
           <el-input
@@ -75,14 +65,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="地址">
-          <el-input
-            v-model="editsForm.address"
-            max-length="12"
-          ></el-input>
+          <el-input v-model="editsForm.address" max-length="12"></el-input>
         </el-form-item>
         <el-form-item label="邮箱">
           <el-input
-            v-model="editsForm.email"  
+            v-model="editsForm.email"
             onkeyup="value=value.replace(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/)"
           ></el-input>
         </el-form-item>
@@ -104,7 +91,10 @@
           <el-input v-model="addForm.name" max-length="12"></el-input>
         </el-form-item>
         <el-form-item label="电话">
-          <el-input v-model="addForm.phone" onkeyup="value=value.replace(/^[1234567890][1234567890]\d{9}$/)"></el-input>
+          <el-input
+            v-model="addForm.phone"
+            onkeyup="value=value.replace(/^[1234567890][1234567890]\d{9}$/)"
+          ></el-input>
         </el-form-item>
         <el-form-item label="工资">
           <el-input
@@ -119,9 +109,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="邮箱">
-          <el-input
-            v-model="addForm.email"
-          ></el-input>
+          <el-input v-model="addForm.email"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="staffAddEdit()">确定</el-button>
@@ -167,20 +155,8 @@ export default {
   methods: {
     staffAddEdit() {
       let addstaff = this.addForm;
-      let {
-        name,
-        phone,
-        money,
-        address,
-        email,
-      } = addstaff;
-      if (
-        name == "" ||
-        phone == "" ||
-        money == "" ||
-        address == "" ||
-        email == ""
-      ) {
+      let { name, phone, money, address, email } = addstaff;
+      if (name == "" || phone == "" || money == "" || address == "" || email == "") {
         this.$message.error("内容每一项都不准为空");
       } else {
         axios.post("http://localhost:3000/stafflist/", addstaff).then((res) => {
@@ -215,20 +191,8 @@ export default {
     UserModifyEdit() {
       let modifyuser = this.editsForm;
       console.log(modifyuser);
-      let {
-        name,
-        phone,
-        money,
-        address,
-        email,
-      } = modifyuser;
-      if (
-        name == "" ||
-        phone == "" ||
-        money == "" ||
-        address == "" ||
-        email == ""
-      ) {
+      let { name, phone, money, address, email } = modifyuser;
+      if (name == "" || phone == "" || money == "" || address == "" || email == "") {
         this.$message.error("修改内容除了不可编辑的每一项都不准为空");
       } else {
         axios
@@ -310,5 +274,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

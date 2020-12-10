@@ -12,10 +12,7 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input
-          v-model="formInline.message"
-          placeholder="请输入查询内容"
-        ></el-input>
+        <el-input v-model="formInline.message" placeholder="请输入查询内容"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="Query">查询</el-button>
@@ -27,20 +24,16 @@
     <el-table fit :data="shopList" style="width: 80%; margin-left: 20px">
       <el-table-column disable prop="shopname" label="店名" width="100">
       </el-table-column>
-      <el-table-column prop="shopmanager" label="店长" width="100">
-      </el-table-column>
-      <el-table-column prop="clerk" label="店员数" width="80">
-      </el-table-column>
+      <el-table-column prop="shopmanager" label="店长" width="100"> </el-table-column>
+      <el-table-column prop="clerk" label="店员数" width="80"> </el-table-column>
       <el-table-column prop="cars" label="车辆数" width="80"> </el-table-column>
-      <el-table-column prop="profit" label="利润（万元）" width="80">
-      </el-table-column>
+      <el-table-column prop="profit" label="利润（万元）" width="80"> </el-table-column>
       <el-table-column prop="businesstimebegin" label="营业开始时间" width="120">
       </el-table-column>
       <el-table-column prop="businesstimeend" label="营业结束时间" width="120">
       </el-table-column>
       <el-table-column prop="tel" label="电话" width="120"> </el-table-column>
-      <el-table-column prop="address" label="地址" width="120">
-      </el-table-column>
+      <el-table-column prop="address" label="地址" width="120"> </el-table-column>
       <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button
@@ -87,27 +80,29 @@
         </el-form-item>
         <el-form-item label="利润">
           <el-input
-            v-model="editsForm.profit"  
+            v-model="editsForm.profit"
             onkeyup="value=value.replace(/[^\d]/g,'')"
           ></el-input>
         </el-form-item>
 
         <el-form-item label="营业开始时间">
           <el-time-picker
-           v-model="editsForm.businesstimebegin"
-           type="time"
-           format="HH:mm:ss"
-           value-format="HH:mm:ss"
-           placeholder="选择日期时间">
+            v-model="editsForm.businesstimebegin"
+            type="time"
+            format="HH:mm:ss"
+            value-format="HH:mm:ss"
+            placeholder="选择日期时间"
+          >
           </el-time-picker>
         </el-form-item>
         <el-form-item label="营业结束时间">
           <el-time-picker
-           v-model="editsForm.businesstimeend"
-           type="time"
-           format="HH:mm:ss"
-           value-format="HH:mm:ss"
-           placeholder="选择日期时间">
+            v-model="editsForm.businesstimeend"
+            type="time"
+            format="HH:mm:ss"
+            value-format="HH:mm:ss"
+            placeholder="选择日期时间"
+          >
           </el-time-picker>
         </el-form-item>
         <el-form-item label="电话">
@@ -160,20 +155,22 @@
 
         <el-form-item label="营业开始时间">
           <el-time-picker
-           v-model="addForm.businesstimebegin"
-           type="time"
-           format="HH:mm:ss"
-           value-format="HH:mm:ss"
-           placeholder="选择日期时间">
+            v-model="addForm.businesstimebegin"
+            type="time"
+            format="HH:mm:ss"
+            value-format="HH:mm:ss"
+            placeholder="选择日期时间"
+          >
           </el-time-picker>
         </el-form-item>
         <el-form-item label="营业结束时间">
           <el-time-picker
-           v-model="addForm.businesstimeend"
-           type="time"
-           format="HH:mm:ss"
-           value-format="HH:mm:ss"
-           placeholder="选择日期时间">
+            v-model="addForm.businesstimeend"
+            type="time"
+            format="HH:mm:ss"
+            value-format="HH:mm:ss"
+            placeholder="选择日期时间"
+          >
           </el-time-picker>
         </el-form-item>
         <el-form-item label="电话">
@@ -293,15 +290,7 @@ export default {
     UserModifyEdit() {
       let modifyuser = this.editsForm;
       console.log(modifyuser);
-      let {
-        shopmanager,
-        clerk,
-        cars,
-        profit,
-        businesstime,
-        tel,
-        address,
-      } = modifyuser;
+      let { shopmanager, clerk, cars, profit, businesstime, tel, address } = modifyuser;
       if (
         shopmanager == "" ||
         clerk == "" ||
@@ -392,5 +381,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

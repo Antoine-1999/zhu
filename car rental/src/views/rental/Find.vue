@@ -42,9 +42,7 @@
           >小时
         </span>
         <div class="btn">
-          <el-button round size="mini" @click="finish(index)"
-            >完成订单</el-button
-          >
+          <el-button round size="mini" @click="finish(index)">完成订单</el-button>
           <el-button round size="mini" @click="urge(item.phone, index)"
             >催促还车</el-button
           >
@@ -60,7 +58,7 @@
       <div class="findindents">
         <div
           class="findindent"
-          v-for="(item,index) in find"
+          v-for="(item, index) in find"
           :key="item"
           @mouseenter="countTime(item.date[1])"
         >
@@ -99,8 +97,12 @@
             >小时
           </span>
           <div class="btn">
-            <el-button round size="mini" @click="finish(item.index,index)">完成订单</el-button>
-            <el-button round size="mini" @click="urge(item.phone, item.index)">催促还车</el-button>
+            <el-button round size="mini" @click="finish(item.index, index)"
+              >完成订单</el-button
+            >
+            <el-button round size="mini" @click="urge(item.phone, item.index)"
+              >催促还车</el-button
+            >
           </div>
         </div>
       </div>
@@ -114,11 +116,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import mock from '@/api/rentalmock'
+import axios from "axios";
+import mock from "@/api/rentalmock";
 export default {
-  mounted () {
-      this.getindent();
+  mounted() {
+    this.getindent();
   },
   data() {
     return {
@@ -129,21 +131,19 @@ export default {
       tag1: false,
       tag2: false,
       tag3: false,
-      indents:[],
+      indents: [],
     };
   },
   methods: {
-    getindent(){
-      axios.get('/indents').then(response =>{
-        this.indents=response.data;
-      })
+    getindent() {
+      axios.get("/indents").then((response) => {
+        this.indents = response.data;
+      });
     },
     //计算订单剩余时间
     countTime(end) {
       var nowdate = new Date();
-      var time = parseInt(
-        (Date.parse(end) - Date.parse(nowdate)) / 1000 / 60 / 60
-      );
+      var time = parseInt((Date.parse(end) - Date.parse(nowdate)) / 1000 / 60 / 60);
       this.time = time;
       return time;
     },
@@ -162,14 +162,14 @@ export default {
         this.$message.error("订单未超时 !");
       }
     },
-    finish(index,findindex) {
+    finish(index, findindex) {
       if (this.time <= 0) {
-        axios.post('/finishindent',this.indents[index]);
-        axios.post('/deleteindent',index);
+        axios.post("/finishindent", this.indents[index]);
+        axios.post("/deleteindent", index);
         this.indents.splice(index, 1);
         this.find.splice(findindex, 1);
-        this.find.forEach(item=> {
-          if(item.index>index){
+        this.find.forEach((item) => {
+          if (item.index > index) {
             item.index--;
           }
         });
@@ -180,35 +180,35 @@ export default {
     },
     timeout() {
       this.tag1 = !this.tag1;
-      this.find=[];
-      if(this.tag1){
-        var index=-1;
-        this.indents.forEach(item=> {
+      this.find = [];
+      if (this.tag1) {
+        var index = -1;
+        this.indents.forEach((item) => {
           index++;
           var start = -this.countTime(item.date[0]);
           var end = this.countTime(item.date[1]);
-          if(this.tag2){
-            if(start/24<=7&&end<0){
+          if (this.tag2) {
+            if (start / 24 <= 7 && end < 0) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
-          }else if(this.tag3){
-            if(start/24<=30&&end<0){
+          } else if (this.tag3) {
+            if (start / 24 <= 30 && end < 0) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
-          }else{
-            if(end<0){
+          } else {
+            if (end < 0) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
           }
         });
-      }else{
-        if(this.tag2){
+      } else {
+        if (this.tag2) {
           this.tag2 = false;
           this.week();
-        }else if(this.tag3){
+        } else if (this.tag3) {
           this.tag3 = false;
           this.month();
         }
@@ -217,27 +217,27 @@ export default {
     week() {
       this.tag2 = !this.tag2;
       this.tag3 = false;
-      this.find=[];
-      if(this.tag2){
-        var index=-1;
-        this.indents.forEach(item=> {
+      this.find = [];
+      if (this.tag2) {
+        var index = -1;
+        this.indents.forEach((item) => {
           index++;
           var start = -this.countTime(item.date[0]);
           var end = this.countTime(item.date[1]);
-          if(this.tag1){
-            if(start/24<=7&&end<0){
+          if (this.tag1) {
+            if (start / 24 <= 7 && end < 0) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
-          }else{
-            if(start/24<=7){
+          } else {
+            if (start / 24 <= 7) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
           }
         });
-      }else{
-        if(this.tag1){
+      } else {
+        if (this.tag1) {
           this.tag1 = false;
           this.timeout();
         }
@@ -246,27 +246,27 @@ export default {
     month() {
       this.tag2 = false;
       this.tag3 = !this.tag3;
-      this.find=[];
-      if(this.tag3){
-        var index=-1;
-        this.indents.forEach(item=> {
+      this.find = [];
+      if (this.tag3) {
+        var index = -1;
+        this.indents.forEach((item) => {
           index++;
           var start = -this.countTime(item.date[0]);
           var end = this.countTime(item.date[1]);
-          if(this.tag1){
-            if(start/24<=30&&end<0){
+          if (this.tag1) {
+            if (start / 24 <= 30 && end < 0) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
-          }else{
-            if(start/24<=30){
+          } else {
+            if (start / 24 <= 30) {
               this.find.push(item);
-              this.find[this.find.length-1].index=index;
+              this.find[this.find.length - 1].index = index;
             }
           }
         });
-      }else{
-        if(this.tag1){
+      } else {
+        if (this.tag1) {
           this.tag1 = false;
           this.timeout();
         }
@@ -352,7 +352,7 @@ export default {
       height: 10%;
       display: flex;
       align-items: flex-end;
-      border-bottom: 1px solid #C0C4CC;
+      border-bottom: 1px solid #c0c4cc;
 
       .el-tag {
         margin-right: 10px;
@@ -365,12 +365,12 @@ export default {
       white-space: nowrap;
       overflow: auto;
       overflow-y: hidden;
-      border-left: 1px solid #C0C4CC;
+      border-left: 1px solid #c0c4cc;
       .findindent {
         width: 40%;
         height: 95%;
         display: inline-block;
-        margin: 8px 5px ;
+        margin: 8px 5px;
         border-radius: 10px;
         overflow: hidden;
         background-color: white;
@@ -420,9 +420,9 @@ export default {
     .tagbtn {
       width: 100%;
       height: 20%;
-      border-top: 1px solid #C0C4CC;
+      border-top: 1px solid #c0c4cc;
       // background-color: rgb(244, 244, 245);
-      .el-button{
+      .el-button {
         margin-top: 5px;
       }
     }

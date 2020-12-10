@@ -13,24 +13,35 @@
           <span>商品管理</span>
         </template>
         <el-menu-item-group>
-          <template slot="title">
-            <i class="el-icon-truck"></i>汽车信息管理
-          </template>
-          <el-menu-item index="1-1" @click="$router.push('/benz')"><i class="el-icon-truck"></i>奔驰系列</el-menu-item>
-          <el-menu-item index="1-2" @click="$router.push('/bmw')"><i class="el-icon-truck"></i>宝马系列</el-menu-item>
-          <el-menu-item index="1-3" @click="$router.push('/faw-vk')"><i class="el-icon-truck"></i>大众系列</el-menu-item>
-          <el-menu-item index="1-4" @click="$router.push('/nissan')"><i class="el-icon-truck"></i>日产系列</el-menu-item>
-          <el-menu-item index="1-5" @click="$router.push('/addcar')"><i class="el-icon-truck"></i>添加汽车信息</el-menu-item>
-          <el-menu-item index="1-6" @click="$router.push('/deletecar')"><i class="el-icon-truck"></i>删除汽车信息</el-menu-item>
+          <template slot="title"> <i class="el-icon-truck"></i>汽车信息管理 </template>
+          <el-menu-item index="1-1" @click="$router.push('/benz')"
+            ><i class="el-icon-truck"></i>奔驰系列</el-menu-item
+          >
+          <el-menu-item index="1-2" @click="$router.push('/bmw')"
+            ><i class="el-icon-truck"></i>宝马系列</el-menu-item
+          >
+          <el-menu-item index="1-3" @click="$router.push('/faw-vk')"
+            ><i class="el-icon-truck"></i>大众系列</el-menu-item
+          >
+          <el-menu-item index="1-4" @click="$router.push('/nissan')"
+            ><i class="el-icon-truck"></i>日产系列</el-menu-item
+          >
+          <el-menu-item index="1-5" @click="$router.push('/addcar')"
+            ><i class="el-icon-truck"></i>添加汽车信息</el-menu-item
+          >
+          <el-menu-item index="1-6" @click="$router.push('/deletecar')"
+            ><i class="el-icon-truck"></i>删除汽车信息</el-menu-item
+          >
         </el-menu-item-group>
-         <el-menu-item-group>
-          <template slot="title">
-            <i class="el-icon-help"></i>维修保养管理
-          </template>
-          <el-menu-item index="1-7" @click="$router.push('/repair')"><i class="el-icon-help"></i>维修情况</el-menu-item>
-          <el-menu-item index="1-8" @click="$router.push('/book')"><i class="el-icon-help"></i>维修预约</el-menu-item>
+        <el-menu-item-group>
+          <template slot="title"> <i class="el-icon-help"></i>维修保养管理 </template>
+          <el-menu-item index="1-7" @click="$router.push('/repair')"
+            ><i class="el-icon-help"></i>维修情况</el-menu-item
+          >
+          <el-menu-item index="1-8" @click="$router.push('/book')"
+            ><i class="el-icon-help"></i>维修预约</el-menu-item
+          >
         </el-menu-item-group>
-
       </el-submenu>
 
       <el-submenu index="2">

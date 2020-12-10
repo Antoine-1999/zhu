@@ -1,35 +1,42 @@
 <template>
   <div>
     <el-form ref="searchform" :inline="true" :model="searchmap" class="elform">
-      <el-form-item style="width:150px">
+      <el-form-item style="width: 150px">
         <el-input v-model="searchmap.number" placeholder="会员卡号"></el-input>
       </el-form-item>
-      <el-form-item style="width:150px">
+      <el-form-item style="width: 150px">
         <el-input v-model="searchmap.name" placeholder="会员姓名"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-select v-model="searchmap.sex" placeholder="性别" style="width:80px" clearable>
+        <el-select
+          v-model="searchmap.sex"
+          placeholder="性别"
+          style="width: 80px"
+          clearable
+        >
           <el-option label="男" value="男"></el-option>
           <el-option label="女" value="女"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item style="width:150px">
+      <el-form-item style="width: 150px">
         <el-input v-model="searchmap.phone" placeholder="手机号"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="debounce(selectmember,600,false)()">查询</el-button>
+        <el-button type="primary" @click="debounce(selectmember, 600, false)()"
+          >查询</el-button
+        >
         <el-button type="primary" @click="handleadd">添加</el-button>
         <el-button type="primary" @click="getData">重置</el-button>
       </el-form-item>
     </el-form>
     <el-table
-      :data="memberlist.slice((currentpage - 1) * pagesize, currentpage*pagesize)"
+      :data="memberlist.slice((currentpage - 1) * pagesize, currentpage * pagesize)"
       stripe
-      :style="{'width': thewidth}"
+      :style="{ width: thewidth }"
       border
       height="475"
-      :cell-style="{'text-align':'center'}"
-      :header-cell-style="{'text-align':'center'}"
+      :cell-style="{ 'text-align': 'center' }"
+      :header-cell-style="{ 'text-align': 'center' }"
     >
       <el-table-column type="index" label="序号" width="50"></el-table-column>
       <el-table-column prop="number" label="会员卡号" width="150"></el-table-column>
@@ -43,11 +50,13 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
-    <div :style="{'margin-left': thepage}">
+    <div :style="{ 'margin-left': thepage }">
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -59,14 +68,19 @@
       ></el-pagination>
     </div>
 
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="500px" height="200px">
+    <el-dialog
+      :title="title"
+      :visible.sync="dialogFormVisible"
+      width="500px"
+      height="200px"
+    >
       <el-form
         :rules="rules"
         :model="addpojo"
         ref="pojoform"
         label-width="100px"
         label-position="right"
-        style="width:400px"
+        style="width: 400px"
       >
         <el-form-item label="会员卡号" prop="number">
           <el-input
@@ -104,10 +118,20 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="租赁次数" prop="rentalcount">
-          <el-input v-model="addpojo.rentalcount" autocomplete="off" :disabled="inputdisable" onkeyup="value=value.replace(/[^\d]/g,'')"></el-input>
+          <el-input
+            v-model="addpojo.rentalcount"
+            autocomplete="off"
+            :disabled="inputdisable"
+            onkeyup="value=value.replace(/[^\d]/g,'')"
+          ></el-input>
         </el-form-item>
         <el-form-item label="信用积分" prop="credit">
-          <el-input v-model="addpojo.credit" autocomplete="off" :disabled="inputdisable" onkeyup="value=value.replace(/[^\d]/g,'')"></el-input>
+          <el-input
+            v-model="addpojo.credit"
+            autocomplete="off"
+            :disabled="inputdisable"
+            onkeyup="value=value.replace(/[^\d]/g,'')"
+          ></el-input>
         </el-form-item>
         <el-form-item label="地址" prop="address">
           <el-input v-model="addpojo.address" autocomplete="off"></el-input>
@@ -220,24 +244,22 @@ export default {
         type: "warning",
       })
         .then(async () => {
-          await axios
-            .delete("http://localhost:3000/data/" + row.id)
-            .then((res) => {
-              console.log("正在删除数据");
-              console.log(res.headers);
-              if (res.status == 200) {
-                this.$message({
-                  type: "success",
-                  message: "删除成功!",
-                });
-                this.getData();
-              } else {
-                this.$message({
-                  type: "error",
-                  message: "删除失败！",
-                });
-              }
-            });
+          await axios.delete("http://localhost:3000/data/" + row.id).then((res) => {
+            console.log("正在删除数据");
+            console.log(res.headers);
+            if (res.status == 200) {
+              this.$message({
+                type: "success",
+                message: "删除成功!",
+              });
+              this.getData();
+            } else {
+              this.$message({
+                type: "error",
+                message: "删除失败！",
+              });
+            }
+          });
         })
         .catch(() => {});
     },

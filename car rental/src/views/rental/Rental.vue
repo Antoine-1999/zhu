@@ -10,12 +10,9 @@
           <span v-show="isShow">{{ location }}</span>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item
-            v-for="i in city"
-            :key="i"
-            @click.native="cities(i)"
-            >{{ i }}</el-dropdown-item
-          >
+          <el-dropdown-item v-for="i in city" :key="i" @click.native="cities(i)">{{
+            i
+          }}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-button @click="navbtn(1)" v-bind:class="{ active: isActive1 }">

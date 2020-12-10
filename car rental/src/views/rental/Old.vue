@@ -1,11 +1,7 @@
 <template>
   <div class="old-container">
     <div class="indents">
-      <div
-        class="indent"
-        v-for="item in indents"
-        :key="item.id"
-      >
+      <div class="indent" v-for="item in indents" :key="item.id">
         <span>经办人: {{ item.user }}</span>
         <span>
           <i class="el-icon-s-custom"></i>
@@ -43,11 +39,7 @@
         <el-tag type="info" effect="dark" v-show="tag3">最近一个月</el-tag>
       </div>
       <div class="findindents">
-        <div
-          class="findindent"
-          v-for="item in find"
-          :key="item"
-        >
+        <div class="findindent" v-for="item in find" :key="item">
           <span>经办人: {{ item.user }}</span>
           <span>
             <i class="el-icon-s-custom"></i>
@@ -88,10 +80,10 @@
 </template>
 
 <script>
-import axios from 'axios'
-import mock from '@/api/rentalmock'
+import axios from "axios";
+import mock from "@/api/rentalmock";
 export default {
-  mounted () {
+  mounted() {
     this.oldindents();
   },
   data() {
@@ -100,35 +92,33 @@ export default {
       find: [],
       tag2: false,
       tag3: false,
-      indents:[]
+      indents: [],
     };
   },
   methods: {
-    oldindents(){
-      axios.get('/oldindents').then(response =>{
-        this.indents=response.data;
-      })
+    oldindents() {
+      axios.get("/oldindents").then((response) => {
+        this.indents = response.data;
+      });
     },
     //计算订单开始时间与当前时间的天数差
     countTime(end) {
       var nowdate = new Date();
-      var time = parseInt(
-        (Date.parse(end) - Date.parse(nowdate)) / 1000 / 60 / 60
-      );
+      var time = parseInt((Date.parse(end) - Date.parse(nowdate)) / 1000 / 60 / 60);
       return time;
     },
     week() {
       this.tag2 = !this.tag2;
       this.tag3 = false;
-      this.find=[];
-      if(this.tag2){
-        var index=-1;
-        this.indents.forEach(item=> {
+      this.find = [];
+      if (this.tag2) {
+        var index = -1;
+        this.indents.forEach((item) => {
           index++;
           var start = -this.countTime(item.date[0]);
-          if(start/24<=7){
-              this.find.push(item);
-              this.find[this.find.length-1].index=index;
+          if (start / 24 <= 7) {
+            this.find.push(item);
+            this.find[this.find.length - 1].index = index;
           }
         });
       }
@@ -136,17 +126,17 @@ export default {
     month() {
       this.tag2 = false;
       this.tag3 = !this.tag3;
-      this.find=[];
-      if(this.tag3){
-        var index=-1;
-        this.indents.forEach(item=> {
+      this.find = [];
+      if (this.tag3) {
+        var index = -1;
+        this.indents.forEach((item) => {
           index++;
           var start = -this.countTime(item.date[0]);
           var end = this.countTime(item.date[1]);
-          if(start/24<=30){
-              this.find.push(item);
-              this.find[this.find.length-1].index=index;
-            }
+          if (start / 24 <= 30) {
+            this.find.push(item);
+            this.find[this.find.length - 1].index = index;
+          }
         });
       }
     },
@@ -205,7 +195,7 @@ export default {
       height: 10%;
       display: flex;
       align-items: flex-end;
-      border-bottom: 1px solid #C0C4CC;
+      border-bottom: 1px solid #c0c4cc;
       .el-tag {
         margin-right: 10px;
         margin-bottom: 5px;
@@ -217,12 +207,12 @@ export default {
       white-space: nowrap;
       overflow: auto;
       overflow-y: hidden;
-      border-left: 1px solid #C0C4CC;
+      border-left: 1px solid #c0c4cc;
       .findindent {
         width: 40%;
         height: 95%;
         display: inline-block;
-        margin: 8px 5px ;
+        margin: 8px 5px;
         border-radius: 10px;
         overflow: hidden;
         background-color: white;
@@ -248,8 +238,8 @@ export default {
     .tagbtn {
       width: 100%;
       height: 20%;
-      border-top: 1px solid #C0C4CC;
-      .el-button{
+      border-top: 1px solid #c0c4cc;
+      .el-button {
         margin-top: 5px;
       }
     }

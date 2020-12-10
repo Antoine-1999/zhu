@@ -6,23 +6,23 @@
       @click="$store.commit('changeisCollapse')"
     ></i>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item class="title" v-show="$route.path!='/'">
+      <el-breadcrumb-item class="title" v-show="$route.path != '/'">
         <span class="shu">|</span>
-        <b>{{$route.meta.title}}</b>
+        <b>{{ $route.meta.title }}</b>
       </el-breadcrumb-item>
-      <el-breadcrumb-item class="title" v-if="$route.path=='/'">
+      <el-breadcrumb-item class="title" v-if="$route.path == '/'">
         <span class="shu">|</span>
         <b>首页</b>
       </el-breadcrumb-item>
-      <el-breadcrumb-item v-if="$route.path!='/'">
+      <el-breadcrumb-item v-if="$route.path != '/'">
         <b class="back" @click="$router.push('/')">返回首页</b>
       </el-breadcrumb-item>
     </el-breadcrumb>
 
     <!-- 轮播图   <el-carousel-item >-->
-    <el-carousel indicator-position="outside" height="630px" v-if='$route.path=="/"'>
+    <el-carousel indicator-position="outside" height="630px" v-if="$route.path == '/'">
       <el-carousel-item v-for="item in lunbo" :key="item.id">
-        <img :src="item.src" height="740px" >
+        <img :src="item.src" height="740px" />
       </el-carousel-item>
     </el-carousel>
 
@@ -36,28 +36,28 @@ export default {
   methods: {},
   data() {
     return {
-      lunbo:[
+      lunbo: [
         {
-          id:1,
-          src:require('@/assets/ccar1.jpg')
+          id: 1,
+          src: require("@/assets/ccar1.jpg"),
         },
         {
-          id:2,
-          src:require('@/assets/ccar2.jpg')
+          id: 2,
+          src: require("@/assets/ccar2.jpg"),
         },
         {
-          id:3,
-          src:require('@/assets/ccar3.jpg')
+          id: 3,
+          src: require("@/assets/ccar3.jpg"),
         },
         {
-          id:4,
-          src:require('@/assets/ccar4.jpg')
+          id: 4,
+          src: require("@/assets/ccar4.jpg"),
         },
         {
-          id:5,
-          src:require('@/assets/ccar5.jpg')
+          id: 5,
+          src: require("@/assets/ccar5.jpg"),
         },
-      ]
+      ],
     };
   },
 };
