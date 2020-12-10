@@ -96,12 +96,12 @@ const routes = [
         component: () => import('@/views/staff.vue'),
         meta: { title: '员工信息管理' }
       },
-      {
-        path: '/Addstore',
-        name: 'Addstore',
-        component: () => import('@/views/Addstore.vue'),
-        meta: { title: '添加门店信息' }
-      },
+      // {
+      //   path: '/Addstore',
+      //   name: 'Addstore',
+      //   component: () => import('@/views/Addstore.vue'),
+      //   meta: { title: '添加门店信息' }
+      // },
       {
         path: '/Usermsg',
         name: 'Usermsg',
