@@ -265,6 +265,7 @@ export default {
           this.getshopList();
           this.shopAddForm = false;
           this.$message("添加成功");
+          this.reset();
           // }
         });
       }
@@ -331,28 +332,13 @@ export default {
           console.log("delete  res:" + res);
           this.getshopList();
           this.$message("删除成功");
-          // }
         });
-      // this.$axios.post('/deleteuser',row).then(res=>{
-      //     if(res.data.data ===1){
-      //         this.getuserList();
-      //     }
-      // })
     },
     Query() {
       if (this.formInline.message === "") {
         this.getshopList();
         return;
       }
-      //let keyarr = Object.keys(this.editsForm)
-      //let i
-      // keyarr.forEach((value,index) => {
-      //     if(this.formInline.Queryitem.toString() === value.toString())
-      //     {i = index}
-      // })
-      // let query = {
-      //     [keyarr[i]]:this.formInline.message
-      // }
       let that = this;
       axios
         .get(
@@ -373,6 +359,17 @@ export default {
       this.formInline.message = "";
       this.getshopList();
     },
+    reset() {
+      this.shopname= "",
+      this.shopmanager= "",
+      this.clerk= "",
+      this.cars= "",
+      this.profit= "",
+      this.businesstimebegin= "",
+      this.businesstimeend= "",
+      this.tel= "",
+      this.address= ""
+    }
   },
 
   mounted() {

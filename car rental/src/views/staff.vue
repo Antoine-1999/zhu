@@ -153,6 +153,13 @@ export default {
     };
   },
   methods: {
+    reset() {
+      this.staffAddForm.name = "";
+      this.staffAddForm.phone = "";
+      this.editsForm.money = "";
+      this.editsForm.address = "";
+      this.editsForm.email = "";
+    },
     staffAddEdit() {
       let addstaff = this.addForm;
       let { name, phone, money, address, email } = addstaff;
@@ -165,7 +172,8 @@ export default {
           // if(res.data.data ===1){
           this.getstaffList();
           this.staffAddForm = false;
-          this.$message("添加成功");
+          this.$message("添加成功!!");
+          this.reset();
           // }
         });
       }
@@ -205,6 +213,7 @@ export default {
             this.getstaffList();
             this.staffEditForm = false;
             this.$message("修改成功");
+            this.reset();
             // }
           });
       }

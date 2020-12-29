@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       //获取当前登录用户姓名
-      user: "陈奕迅",
+      user: "盐城旭",
       //记录门店
       location: "选择门店",
       //用来隐藏侧边导航栏文字
